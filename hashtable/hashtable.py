@@ -1,3 +1,4 @@
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -18,11 +19,11 @@ class HashTable:
     that accepts string keys
 
     Implement this.
+
     """
-
     def __init__(self, capacity):
-        # Your code here
-
+        self.capacity = capacity
+        self.table = [None] * capacity
 
     def get_num_slots(self):
         """
@@ -34,16 +35,23 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        return len(self.table)# Your code here
 
 
     def get_load_factor(self):
         """
         Return the load factor for this hash table.
-
+        #total number of items divided by table size = load factor
         Implement this.
         """
         # Your code here
+        count = 0
+        for x in self.table:
+            if x.key is not None:
+                count += 1
+        return count / len(self.table)
+
+
 
 
     def fnv1(self, key):
@@ -62,7 +70,10 @@ class HashTable:
 
         Implement this, and/or FNV-1.
         """
-        # Your code here
+        hash = 5381
+        for x in key:
+            hash = (( hash << 5) + hash) + ord(x)
+        return hash & 0xFFFFFFFF % len(self.table)
 
 
     def hash_index(self, key):
@@ -81,7 +92,8 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        index = self.djb2(key)
+        self.table[index] = HashTableEntry(key, value)
 
 
     def delete(self, key):
@@ -93,7 +105,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        index = self.djb2(key)
+        hash_entry = self.table[index]
+        if hash_entry is not None:
+            self.table[index] = None
 
     def get(self, key):
         """
@@ -104,7 +119,13 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        index = self.djb2(key)
+        hash_entry = self.table[index]
 
+        if hash_entry is not None:
+            return hash_entry.value
+        if hash_entry is None:
+            return None
 
     def resize(self, new_capacity):
         """
