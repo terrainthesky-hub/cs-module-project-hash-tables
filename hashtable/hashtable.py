@@ -19,15 +19,15 @@ class LinkedList:
                 return current
             current = current.next
 
-    def insert_at_head(self, key, value):
-        # Check if key is already there, update
-        # else make a new one
-        if self.find(key):
-            found = self.find(key)
-            found.value = value
-        new_node = HashTableEntry(key, value)
-        new_node.next = self.head
-        self.head = new_node
+    # def insert_at_head(self, key, value):
+    #     # Check if key is already there, update
+    #     # else make a new one
+    #     if self.find(key):
+    #         found = self.find(key)
+    #         found.value = value
+    #     new_node = HashTableEntry(key, value)
+    #     new_node.next = self.head
+    #     self.head = new_node
 
 
 

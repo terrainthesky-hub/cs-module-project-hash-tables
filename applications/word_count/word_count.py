@@ -1,6 +1,11 @@
-def word_count(s):
-    # Your code here
 
+    # Your code here
+def word_count(string):
+    my_string = string.lower().split()
+    my_dict = {}
+    for item in my_string:
+        my_dict[item] = my_string.count(item)
+    return my_dict
 
 
 if __name__ == "__main__":
