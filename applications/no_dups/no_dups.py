@@ -1,5 +1,14 @@
 def no_dups(s):
     # Your code here
+    #pull out individual words
+    words = s.split()
+    seen = {}
+    result = []
+    for word in words:
+        if word not in seen:
+            result.append(word)
+            seen[word] = True
+    return " ".join(result)
 
 
 

@@ -1,10 +1,18 @@
 
+import re
+
     # Your code here
 def word_count(string):
-    my_string = string.lower().split()
+    my_string = str.maketrans('', '', '":;,.-+=/\\|[]{}()*^&')
+    string = string.translate(my_string).lower()
+    words = string.split()  
     my_dict = {}
-    for item in my_string:
-        my_dict[item] = my_string.count(item)
+    for item in words:
+        if item not in my_dict:
+            my_dict[item] = 1
+        else:
+            my_dict[item] += 1
+        # my_dict[item] = words.count(item)
     return my_dict
 
 
