@@ -1,7 +1,10 @@
 # Your code here
-
+import random 
+import math
+cache = {}
 
 def slowfun_too_slow(x, y):
+    
     v = math.pow(x, y)
     v = math.factorial(v)
     v //= (x + y)
@@ -15,6 +18,18 @@ def slowfun(x, y):
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
+    
+    if (x, y) not in cache:
+        v = math.pow(x, y)
+        v = math.factorial(v)
+        v //= (x + y)
+        cache[(x,y)] = v % 982451653
+        # cache[v] = math.pow(x, y)
+        # cache[v] = math.factorial(v)
+        # cache[v] //= (x + y)
+        # cache[v] %= 982451653
+
+    return cache[(x,y)]
 
 
 
